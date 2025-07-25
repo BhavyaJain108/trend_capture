@@ -1,0 +1,16 @@
+query_number,query_text,videos_found,date_filter,status,error
+1,Sandy Munro Tesla Model Y teardown analysis 2024,2,2024-01-20,success,
+2,Tesla Full Self Driving explained by Engineering Explained,2,2024-01-20,success,
+3,Marques Brownlee MKBHD Tesla Cybertruck complete review,2,2024-01-20,success,
+4,Tesla Model 3 maintenance guide DIY tutorial,2,2024-01-20,success,
+5,Bloomberg Tesla stock analysis 2024 expert discussion,0,2024-01-20,failed,No results found for query: Bloomberg Tesla stock analysis 2024 expert discussion
+6,Tesla charging network vs competitors comparison expert analysis,0,2024-01-20,failed,No results found for query: Tesla charging network vs competitors comparison expert analysis
+7,Rich Rebuilds Tesla repair secrets revealed,0,2024-01-20,failed,No results found for query: Rich Rebuilds Tesla repair secrets revealed
+8,Tesla gigafactory manufacturing process explained 2024,2,2024-01-20,success,
+9,Munro Live Tesla 4680 battery technology breakdown,1,2024-01-20,success,
+10,Tesla autopilot safety features tutorial step by step,2,2024-01-20,success,
+11,Gali Russell Tesla investing strategy analysis,0,2024-01-20,failed,No results found for query: Gali Russell Tesla investing strategy analysis
+12,Bjorn Nyland Tesla range test real world,2,2024-01-20,success,
+13,Out of Spec Reviews Tesla performance testing,2,2024-01-20,success,
+14,Tesla factory tour behind the scenes official,2,2024-01-20,success,
+15,Wall Street Journal Tesla market position analysis 2024,2,2024-01-20,success,

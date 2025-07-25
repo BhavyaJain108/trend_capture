@@ -1,0 +1,16 @@
+query_number,query_text,videos_found,date_filter,status,error
+1,Sandy Munro Tesla teardown analysis 2024,2,2024-01-20,success,
+2,Tesla Engineering Explained detailed review,1,2024-01-20,success,
+3,Marques Brownlee MKBHD Tesla latest review,2,2024-01-20,success,
+4,Tesla self driving technology explained by experts,2,2024-01-20,success,
+5,Wall Street Journal Tesla financial analysis 2024,2,2024-01-20,success,
+6,How Tesla factory production line works documentary,2,2024-01-20,success,
+7,Tesla vs competitors automotive expert comparison,0,2024-01-20,failed,No results found for query: Tesla vs competitors automotive expert comparison
+8,Rich Rebuilds Tesla repair guide,1,2024-01-20,success,
+9,Bloomberg Tesla stock market analysis,2,2024-01-20,success,
+10,Tesla charging network explained for beginners,2,2024-01-20,success,
+11,Munro Live Tesla manufacturing deep dive,0,2024-01-20,failed,No results found for query: Munro Live Tesla manufacturing deep dive
+12,Tesla autopilot features tutorial 2024,2,2024-01-20,success,
+13,Out of Spec Reviews Tesla range test,2,2024-01-20,success,
+14,Tesla Cybertruck engineering analysis,2,2024-01-20,success,
+15,Motortrend Tesla performance testing results,0,2024-01-20,failed,No results found for query: Motortrend Tesla performance testing results

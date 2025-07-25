@@ -1,0 +1,95 @@
+date,category,information,score
+2024-05-15,educational_demand,Growing demand for skills in EV suspension system integration and diagnostics,0.9
+2024-05-15,problem_spaces,Upper control arm durability concerns with reports of bending issues,0.9
+2024-03-13,educational_demand,Rising demand for EV safety engineering expertise,0.9
+2024-03-13,educational_demand,Increasing importance of EV-specific structural engineering knowledge,0.9
+2024-03-13,behavioral_patterns,Growing emphasis on quieter cabin experience in electric vehicles,0.9
+2024-03-13,emerging_topics,Enhanced noise/vibration/harshness (NVH) reduction in EVs through laminated glass and improved sealing,0.9
+2024-03-13,emerging_topics,Transition from mechanical to electronic/software-based vehicle controls,0.9
+2024-03-13,emerging_topics,Advanced structural safety design for heavier EV battery packs,0.8
+2024-05-15,educational_demand,Need for expertise in air ride suspension systems maintenance and repair,0.8
+2024-05-15,educational_demand,Educational needs around new integrated bearing/CV joint designs,0.8
+2024-03-13,early_adopter_products,Tesla Model 3 2024 refresh with significant upgrades to noise/vibration/harshness (NVH) improvements including new laminated glass,0.8
+2024-03-13,emerging_topics,Integration of controls into steering wheels/screens vs traditional stalks and switches,0.8
+2024-05-15,early_adopter_products,USMCA regulations driving careful balancing of US vs international parts sourcing,0.8
+2024-03-13,emerging_topics,Customer feedback-driven iterative product improvements,0.8
+2024-05-15,behavioral_patterns,"Shift toward simpler, more cost-effective manufacturing processes using steel stampings vs aluminum castings",0.8
+2024-03-13,problem_spaces,Side impact protection challenges with heavier EV battery packs requiring structural solutions,0.8
+2024-03-13,behavioral_patterns,Shift from physical control stalks to touchscreen/wheel-embedded controls for turn signals and drive modes,0.8
+2024-03-13,behavioral_patterns,"Growing customer preference for cleaner, minimalist control interfaces",0.8
+2024-03-13,educational_demand,Need for expertise in vehicle noise/vibration/harshness (NVH) engineering and testing,0.8
+2024-03-13,educational_demand,Rising need for expertise in automotive ergonomics and user interface design,0.8
+2024-03-13,problem_spaces,Previous Model 3 had significant noise/NVH issues that needed addressing,0.8
+2024-03-13,early_adopter_products,Cybertruck mentioned as benchmark for cabin noise reduction,0.8
+2024-05-15,emerging_topics,Integration of components to reduce manufacturing complexity and costs is a growing trend in EV design,0.8
+2024-05-15,problem_spaces,Supply chain complexity managing USMCA content requirements with parts from US/Mexico/China,0.8
+2024-05-15,problem_spaces,Manufacturing complexity and cost challenges with aluminum control arms requiring duplicate tooling stations for volume production,0.8
+2024-03-13,emerging_topics,Aerodynamic innovations for noise reduction and efficiency using strategic body shaping,0.7
+2024-03-13,emerging_topics,Cost-value engineering: strategic addition of premium features while removing less valued elements,0.7
+2024-03-13,emerging_topics,Enhanced chassis tuning for improved ride comfort in EVs,0.7
+2024-03-13,early_adopter_products,Removal of traditional steering column stalks in favor of touch controls and screen interfaces,0.7
+2024-05-15,early_adopter_products,"Air ride suspension systems are becoming more common in EV trucks (Tesla Cybertruck, Rivian) vs electromagnetic dampers",0.7
+2024-05-15,emerging_topics,Geographic manufacturing diversification (US/Mexico/China) to optimize costs while meeting local content requirements,0.7
+2024-05-15,emerging_topics,"Material selection optimization balancing cost vs performance, particularly aluminum vs steel trade-offs",0.7
+2024-03-13,problem_spaces,"Traditional control stalks are expensive and prone to issues, driving need for alternatives",0.7
+2024-05-15,educational_demand,Skills needed for air-over-hydraulic system maintenance and troubleshooting,0.7
+2024-05-15,educational_demand,Knowledge gap in advanced manufacturing processes for aluminum vs steel components,0.7
+2024-05-15,problem_spaces,Cost management challenges balancing material choices against manufacturing complexity,0.7
+2024-05-15,problem_spaces,Air ride suspension system reliability and long-term durability concerns,0.7
+2024-03-13,behavioral_patterns,Increased adoption of laminated glass and noise reduction features in vehicle design,0.7
+2024-03-13,behavioral_patterns,Shift toward more sophisticated suspension tuning for ride comfort,0.7
+2024-03-13,educational_demand,Skills gap in integrated vehicle systems packaging and design,0.7
+2024-03-13,educational_demand,Growing demand for skills in automotive glass lamination and acoustic materials,0.7
+2024-05-15,behavioral_patterns,Growing trend of component integration and assembly simplification to reduce manufacturing costs,0.7
+2024-03-13,behavioral_patterns,Enhanced user feedback integration into product development cycles,0.7
+2024-05-15,problem_spaces,Service/repair challenges with integrated CV joint and bearing design making maintenance more difficult,0.7
+2024-03-13,educational_demand,Growing importance of customer feedback analysis and implementation skills,0.7
+2024-03-13,emerging_topics,Simplified and cleaner interior/exterior design aesthetics,0.6
+2024-05-15,emerging_topics,Simplified suspension designs focusing on manufacturability over maximum performance,0.6
+2024-03-13,educational_demand,Need for knowledge in automotive cost optimization and trade-off analysis,0.6
+2024-03-13,educational_demand,Demand for skills in automotive closure systems and door mechanism engineering,0.6
+2024-03-13,emerging_topics,Manufacturing optimization through parts integration and simplified assembly,0.6
+2024-03-13,behavioral_patterns,Increased focus on structural safety features in door design,0.6
+2024-03-13,problem_spaces,Older Model 3 has persistent wheel shake problems that required multiple fix attempts,0.6
+2024-03-13,problem_spaces,Wind noise and turbulence management at high speeds requiring aerodynamic solutions,0.6
+2024-03-13,behavioral_patterns,Migration away from fog lights as standard features due to improved main lighting,-0.6
+2024-05-15,emerging_topics,Trend toward unified/integrated bearing and axle assemblies to reduce parts and improve packaging,0.6
+2024-05-15,emerging_topics,Balancing tooling investment costs against part complexity and assembly operations,0.6
+2024-05-15,problem_spaces,Limited tire size flexibility due to upper ball joint placement and knuckle design compared to competitors,0.6
+2024-05-15,problem_spaces,Non-integrated air reservoir design showing rushed time-to-market compromises,0.6
+2024-05-15,problem_spaces,Clean room assembly requirements driving up costs for certain suspension components,0.6
+2024-05-15,behavioral_patterns,Increasing focus on balancing US vs international manufacturing sources due to USMCA requirements,0.6
+2024-03-13,early_adopter_products,BMW-level suspension system improvements,0.6
+2024-03-13,early_adopter_products,New three-point door latch mechanism and cast/semi-solid forged hinges replacing stamped ones,0.6
+2024-05-15,educational_demand,Training demands for multi-region manufacturing quality control,0.6
+2024-05-15,educational_demand,Training requirements for complex multi-material assembly techniques,0.6
+2024-05-15,emerging_topics,Design focus on protecting critical systems and components from environmental exposure,0.5
+2024-05-15,emerging_topics,Air ride suspension systems gaining traction as cost-effective comfort solution for EVs,0.5
+2024-05-15,problem_spaces,Exposed airline routing along rocker panels creating vulnerability,0.5
+2024-05-15,early_adopter_products,"Manufacturing location trends: castings/forgings from China, stampings from US, cradles from Mexico",0.5
+2024-03-13,behavioral_patterns,Transition from stamped to cast/forged door hinges for premium feel,0.5
+2024-05-15,behavioral_patterns,Movement away from complex air-over-hydraulic suspension systems toward simpler air ride solutions,0.5
+2024-05-15,behavioral_patterns,Reduced emphasis on serviceability in favor of integrated component designs,-0.5
+2024-03-13,educational_demand,Need for understanding of advanced materials (cast vs stamped components),0.5
+2024-03-13,problem_spaces,"Cost trade-offs required between adding new features (screens, trim) vs removing others (fog lights, stalks)",0.5
+2024-05-15,educational_demand,Learning requirements for clean room assembly procedures,0.5
+2024-05-15,educational_demand,Skill needs for noise/vibration/harshness (NVH) optimization,0.5
+2024-03-13,early_adopter_products,Enhanced aerodynamics with new front lip design similar to Renault concept,0.5
+2024-03-13,early_adopter_products,New injection-molded wire harness protection in trunk area,0.5
+2024-03-13,problem_spaces,Space constraints under the hood creating packaging challenges for components like washer fluid bottle,0.4
+2024-05-15,early_adopter_products,Acura MDX's pressed bushing design eliminates welding vs Cybertruck's welded control arm approach,0.4
+2024-03-13,early_adopter_products,Heat pump system modifications and relocated washer fluid bottle,0.4
+2024-05-15,behavioral_patterns,Declining interest in highly complex/customizable suspension systems in favor of simpler solutions,-0.4
+2024-05-15,behavioral_patterns,Rising preference for protected/enclosed placement of critical components vs exposed positioning,0.4
+2024-05-15,educational_demand,Knowledge requirements for USMCA compliance and manufacturing origins,0.4
+2024-05-15,emerging_topics,Stamped steel components preferred over castings for high-volume cost efficiency,0.4
+2024-03-13,early_adopter_products,Integrated tail lights (no longer split design),0.3
+2024-03-13,early_adopter_products,Removal of fog lights in favor of improved main lighting system,-0.3
+2024-03-13,behavioral_patterns,Movement of washer fluid bottle location for better packaging/functionality,0.3
+2024-05-15,early_adopter_products,Tesla Cybertruck uses traditional Gen 3 unit bearings rather than newer integrated CV joint design seen in Hyundai IONIQ,-0.3
+2024-05-15,early_adopter_products,Clean room assembly requirements for electromagnetic dampers driving higher costs vs air ride,0.3
+2024-03-13,problem_spaces,Harness protection issues in trunk requiring more expensive solution with injection molded covers,0.3
+2024-05-15,behavioral_patterns,Trend toward limiting tire size options to manage vehicle loads and structural requirements,0.3
+2024-05-15,emerging_topics,Clean room manufacturing requirements driving costs for advanced suspension technologies,0.3
+2024-05-15,early_adopter_products,Rivian's air-over-hydraulic suspension system eliminates need for sway bars but adds complexity,0.2
+2024-05-15,early_adopter_products,GKN-style axle interfaces remain industry standard across EV trucks,0.0

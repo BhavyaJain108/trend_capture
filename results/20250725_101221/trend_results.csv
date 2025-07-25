@@ -1,0 +1,49 @@
+date,category,information,score
+2024-03-13,emerging_topics,Enhanced noise/vibration/harshness (NVH) reduction through laminated glass and improved sealing becoming critical in EVs,0.9
+2024-03-13,educational_demand,Rising importance of EV-specific structural and safety engineering knowledge,0.9
+2024-03-13,emerging_topics,Enhanced structural reinforcement for heavier EV battery packs,0.9
+2024-03-13,early_adopter_products,"Tesla Model 3 2024 refresh - significant upgrade with improved handling, noise reduction, and performance",0.8
+2024-03-13,early_adopter_products,Tesla Cybertruck mentioned as benchmark for cabin quietness,0.8
+2024-03-13,problem_spaces,Previous Model 3 had significant noise/NVH issues that needed addressing,0.8
+2024-03-13,emerging_topics,Aerodynamic innovations for noise reduction and efficiency,0.8
+2024-03-13,behavioral_patterns,Increased adoption of touch controls and screen-based interfaces over physical controls like steering column stalks,0.8
+2024-03-13,emerging_topics,Integration of structural safety features with aerodynamic design elements,0.8
+2024-03-13,emerging_topics,Strategic cost trade-offs between removing legacy features and adding new technology,0.8
+2024-03-13,educational_demand,"Growing demand for automotive NVH (Noise, Vibration, Harshness) engineering expertise",0.8
+2024-03-13,educational_demand,Growing focus on automotive UI/UX design skills as vehicle controls become more digital,0.8
+2024-03-13,emerging_topics,Customer feedback-driven iterative design improvements,0.7
+2024-03-13,behavioral_patterns,"Transition to simplified, cleaner interior layouts with fewer physical controls",0.7
+2024-03-13,early_adopter_products,"Laminated glass technology adoption in Model 3, similar to Model S, for better noise reduction",0.7
+2024-03-13,problem_spaces,Side impact protection concerns with heavier EV batteries requiring additional reinforcement,0.7
+2024-03-13,early_adopter_products,New three-point door latch mechanism for improved safety and structural integrity,0.7
+2024-03-13,behavioral_patterns,Growing emphasis on cabin noise reduction through laminated glass and improved sealing,0.7
+2024-03-13,emerging_topics,Focus on ride quality and handling improvements in electric vehicles,0.7
+2024-03-13,emerging_topics,Shift from mechanical controls (stalks) to digital/touch interfaces in vehicles,0.7
+2024-03-13,educational_demand,Increasing need for cost optimization and trade-off analysis capabilities,0.7
+2024-03-13,educational_demand,Emerging need for integrated systems packaging expertise in EV design,0.7
+2024-03-13,educational_demand,Increasing need for skills in laminated glass and acoustic materials engineering,0.7
+2024-03-13,behavioral_patterns,Growing attention to aerodynamic design elements for noise reduction,0.6
+2024-03-13,behavioral_patterns,Enhanced focus on customer feedback-driven feature modifications,0.6
+2024-03-13,behavioral_patterns,Shift toward more premium/luxury materials and construction methods (cast vs stamped parts),0.6
+2024-03-13,educational_demand,Declining demand for traditional automotive mechanical control systems knowledge,-0.6
+2024-03-13,educational_demand,Rising importance of customer feedback analysis and implementation skills,0.6
+2024-03-13,emerging_topics,Simplified and integrated component design to reduce parts and improve aesthetics,0.6
+2024-03-13,early_adopter_products,Removal of traditional steering column stalks in favor of touchscreen/wheel controls,0.6
+2024-03-13,early_adopter_products,Heat pump system integration with new front compartment layout,0.6
+2024-03-13,problem_spaces,Cost balancing challenges between adding premium features while removing others,0.6
+2024-03-13,problem_spaces,"Window stocks (stalks) were expensive and prone to issues, driving their removal",0.6
+2024-03-13,emerging_topics,Premium vehicle features moving downmarket to mainstream segments,0.6
+2024-03-13,early_adopter_products,Integration of rear screens and interior trim upgrades,0.6
+2024-03-13,problem_spaces,Space constraints under the hood creating packaging challenges,0.5
+2024-03-13,problem_spaces,Wind noise and aerodynamic turbulence issues requiring design solutions,0.5
+2024-03-13,behavioral_patterns,Movement away from fog lights as standard features due to improved main lighting,-0.5
+2024-03-13,behavioral_patterns,Increased integration of safety features into core vehicle structure (3-point door latch),0.5
+2024-03-13,early_adopter_products,Cast/semi-solid forged door hinges replacing stamped hinges,0.5
+2024-03-13,behavioral_patterns,Trend toward more expensive components to achieve better NVH performance,0.4
+2024-03-13,problem_spaces,Previous Model 3 had harness protection issues requiring more expensive solution,0.4
+2024-03-13,problem_spaces,Earlier Model 3 had wheel shake/vibration issues,0.4
+2024-03-13,early_adopter_products,Removal of fog lights from vehicle features,-0.3
+2024-03-13,early_adopter_products,Relocation of washer fluid bottle in front compartment,0.3
+2024-03-13,behavioral_patterns,Change in washer fluid bottle location indicating new space optimization patterns,0.3
+2024-03-13,problem_spaces,Previous model's exterior styling was criticized as too plain/lacking character,0.3
+2024-03-13,problem_spaces,Previous split taillight design was suboptimal and needed improvement,0.3
