@@ -15,6 +15,7 @@ echo "CLAUDE_API_KEY=your_claude_api_key" >> .env
 
 # Run analysis
 python run_analysis.py "AI coding tools"
+python run_parallel_analysis.py "AI coding tools"
 ```
 
 ## 📊 What It Does
