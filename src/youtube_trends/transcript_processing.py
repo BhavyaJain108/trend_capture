@@ -129,7 +129,7 @@ class TranscriptProcessor:
         if not self.api_key:
             raise TranscriptProcessingError(
                 Config.ERROR_MESSAGES["no_api_key"].format(
-                    api_name="Claude", env_var=Config.CLAUDE_API_KEY_ENV
+                    api_name="Claude", env_var="CLAUDE_API_KEY"
                 )
             )
         

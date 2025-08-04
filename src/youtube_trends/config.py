@@ -7,6 +7,11 @@ for the YouTube trends analysis pipeline.
 
 import os
 from typing import Dict, List, Any
+from dotenv import load_dotenv
+
+
+
+load_dotenv() 
 
 class Config:
     """Centralized configuration for YouTube trends analysis."""
@@ -18,12 +23,17 @@ class Config:
     # Claude API Settings
     CLAUDE_MODEL = "claude-3-5-sonnet-20241022"
     CLAUDE_MAX_TOKENS = 1000
-    CLAUDE_API_KEY_ENV = "CLAUDE_API_KEY"
+    CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY_ENV")
     
     # YouTube API Settings  
     YOUTUBE_API_SERVICE = "youtube"
     YOUTUBE_API_VERSION = "v3"
-    YOUTUBE_API_KEY_ENV = "YOUTUBE_API_KEY"
+    YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+    
+    # OpenAI API Settings (for embeddings)
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
+    OPENAI_EMBEDDING_DIMENSIONS = 1536
     
     # =============================================================================
     # PROCESSING LIMITS & THRESHOLDS
@@ -35,19 +45,19 @@ class Config:
     TRANSCRIPT_MIN_SENTENCE_LENGTH = 10  # characters for sentence splitting
     
     # Query Generation
-    QUERY_WORD_LIMIT = 10           # maximum words per query
-    DEFAULT_NUM_QUERIES = 15         # number of queries to generate
+    QUERY_WORD_LIMIT = 8           # maximum words per query
+    DEFAULT_NUM_QUERIES = 5         # number of queries to generate
     
     # Video Processing
-    DEFAULT_MAX_VIDEOS = 8         # default number of videos to process
-    DEFAULT_VIDEO_SEARCH_LIMIT = 20 # default YouTube search limit
-    VIDEOS_PER_QUERY = 2           # videos to search per query
+    DEFAULT_MAX_VIDEOS = 25         # default number of videos to process
+    DEFAULT_VIDEO_SEARCH_LIMIT = 10 # default YouTube search limit
+    VIDEOS_PER_QUERY = 5           # videos to search per query
     USE_MULTIPLE_QUERIES = True    # whether to use multiple queries or just first one
     
     # Parallel Processing
     MAX_PARALLEL_VIDEOS = 8        # maximum videos to process concurrently
     ENABLE_PARALLEL_PROCESSING = True  # whether to use parallel processing
-    PARALLEL_TIMEOUT = 300         # timeout per video processing in seconds
+    PARALLEL_TIMEOUT = 500         # timeout per video processing in seconds
     
     # Scoring System
     TREND_SCORE_MIN = -1.0         # minimum trend score (declining)
@@ -140,7 +150,7 @@ class Config:
     
     # Query Generation Prompt
     QUERY_GENERATION_PROMPT = """
-You are an expert at crafting optimized YouTube search queries tailored for market research and expert-led content discovery. Your goal is to generate {num_queries} unique queries that surface credible, high-authority results such as expert analysis, tutorials, and influencer commentary.
+You are an expert at crafting optimized YouTube search queries tailored for market research and trendy content discovery. Your goal is to generate {num_queries} unique queries.
 
 User Query: "{user_query}"
 
@@ -151,11 +161,9 @@ Strategy categories (each should produce at least one query):
 3. **Trending Influencer Content** - influencers, trending topics, commentary, “viral discussion”
 
 CRITICAL REQUIREMENTS:
-- Each query must be **{word_limit} words or fewer**
-- Use **long-tail keywords** and common phrasing suggestions likely to be used on YouTube
-- **Include expert names, influencer handles, or known brands/topics** where applicable
-- Queries must target **credible creators or thought leaders**
-- Return **exactly one JSON object**, with no extra output
+- Each query must be **{word_limit} words or fewer. Keep them simple and general
+- Take advantage of youtube's inherent search capabilities and do not complicate the queries
+- Return **exactly one JSON object, with no extra output
 
 JSON format:
 {{
@@ -248,15 +256,49 @@ JSON format:
     FLASK_SECRET_KEY = "youtube-trends-analysis-key"
     
     # =============================================================================
+    # VECTOR DATABASE CONFIGURATION
+    # =============================================================================
+    
+    # Vector Database Settings
+    VECTOR_DB_TYPE = "chroma"  # Options: chroma, faiss, pinecone
+    VECTOR_DB_PATH = "vector_db"  # Local path for Chroma DB
+    VECTOR_DB_COLLECTION = "youtube_trends"
+    
+    # Embedding Configuration
+    EMBEDDING_BATCH_SIZE = 100
+    EMBEDDING_MAX_RETRIES = 3
+    EMBEDDING_RETRY_DELAY = 1.0  # seconds
+    
+    # Trend Aggregation Settings
+    TREND_SIMILARITY_THRESHOLD = 0.85  # For deduplication
+    TREND_MIN_SCORE_THRESHOLD = -0.5   # Filter out very negative trends
+    TREND_TEXT_MAX_LENGTH = 1000       # Truncate long trend descriptions
+    
+    # Search and Retrieval
+    VECTOR_SEARCH_TOP_K = 20          # Default number of results to return
+    VECTOR_SEARCH_SCORE_THRESHOLD = 0.7  # Minimum similarity score for relevance
+    
+    # Metadata Fields for Trends
+    TREND_METADATA_FIELDS = [
+        "category",           # early_adopter_products, emerging_topics, etc.
+        "trend_score",        # -1.0 to 1.0
+        "transcript_date",    # When the trend was discussed
+        "video_title",        # Source video title
+        "video_id",           # YouTube video ID
+        "channel",            # YouTube channel name
+        "run_id",             # Analysis run identifier
+        "run_timestamp",      # When analysis was performed
+        "user_query"          # Original search query
+    ]
+    
+    # =============================================================================
     # HELPER METHODS
     # =============================================================================
     
     @classmethod
     def get_api_key(cls, api_name: str) -> str:
-        """Get API key from environment variables."""
-        env_var = getattr(cls, f"{api_name.upper()}_API_KEY_ENV")
-        api_key = os.getenv(env_var)
-        return api_key  # Return None if not found, let calling code handle error
+        """Get API key from config attributes."""
+        return getattr(cls, f"{api_name.upper()}_API_KEY")
     
     @classmethod
     def get_formatted_prompt(cls, template_name: str, **kwargs) -> str:

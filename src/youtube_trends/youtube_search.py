@@ -47,7 +47,7 @@ class YouTubeSearchClient:
         if not self.api_key:
             raise SearchError(
                 Config.ERROR_MESSAGES["no_api_key"].format(
-                    api_name="YouTube", env_var=Config.YOUTUBE_API_KEY_ENV
+                    api_name="YouTube", env_var="YOUTUBE_API_KEY"
                 )
             )
     

@@ -130,7 +130,7 @@ class ClaudeTranscriptProcessor:
         if not self.api_key:
             raise TranscriptProcessingError(
                 Config.ERROR_MESSAGES["no_api_key"].format(
-                    api_name="Claude", env_var=Config.CLAUDE_API_KEY_ENV
+                    api_name="Claude", env_var="CLAUDE_API_KEY"
                 )
             )
         
@@ -267,9 +267,9 @@ Transcript excerpt:
 {chunk}
 
 Extract insights and score each from -1.0 to +1.0 where:
-- +1.0 = highly trending/rising/growing/urgent
-- 0.0 = neutral/stable/unclear
-- -1.0 = declining/losing momentum/solved/obsolete
++1.0 = highly trending/rising/growing/urgent
+0.0 = neutral/stable/unclear
+-1.0 = declining/losing momentum/solved/obsolete
 
 Return ONLY a JSON array in this exact format:
 [

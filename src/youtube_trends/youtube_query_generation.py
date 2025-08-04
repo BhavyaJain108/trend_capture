@@ -13,7 +13,7 @@ DEFAULT_NUM_QUERIES = Config.DEFAULT_NUM_QUERIES
 QUERY_WORD_LIMIT = Config.QUERY_WORD_LIMIT
 CLAUDE_MODEL = Config.CLAUDE_MODEL
 CLAUDE_MAX_TOKENS = Config.CLAUDE_MAX_TOKENS
-CLAUDE_API_KEY_ENV = Config.CLAUDE_API_KEY_ENV
+CLAUDE_API_KEY = Config.CLAUDE_API_KEY
 
 # Error messages
 ERROR_ANTHROPIC_REQUIRED = Config.ERROR_MESSAGES["anthropic_required"]
@@ -55,7 +55,7 @@ class YouTubeQueryGenerator:
             raise QueryGenerationError(
                 ERROR_NO_API_KEY.format(
                     api_name="Claude", 
-                    env_var=CLAUDE_API_KEY_ENV
+                    env_var="CLAUDE_API_KEY"
                 )
             )
         

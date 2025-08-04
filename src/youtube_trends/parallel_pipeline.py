@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 class ParallelYouTubeTrendsPipeline:
     """Parallel version of the YouTube trends analysis pipeline with concurrent video processing."""
     
-    def __init__(self, youtube_api_key: str = None, claude_api_key: str = None, results_base_dir: str = "results"):
+    def __init__(self, results_base_dir: str = "results"):
         """
         Initialize the parallel pipeline with all components.
         
@@ -43,8 +43,8 @@ class ParallelYouTubeTrendsPipeline:
         
         # Initialize all components
         try:
-            self.query_generator = YouTubeQueryGenerator(api_key=claude_api_key)
-            self.search_client = YouTubeSearchClient(api_key=youtube_api_key)
+            self.query_generator = YouTubeQueryGenerator(api_key=Config.CLAUDE_API_KEY)
+            self.search_client = YouTubeSearchClient(api_key=Config.YOUTUBE_API_KEY)
             # Note: transcript_client and processor will be created per thread
             logger.info("Parallel pipeline initialized successfully")
         except Exception as e:
