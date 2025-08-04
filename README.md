@@ -13,9 +13,10 @@ pip install -r requirements.txt
 echo "YOUTUBE_API_KEY=your_youtube_api_key" >> .env
 echo "CLAUDE_API_KEY=your_claude_api_key" >> .env
 
-# Run analysis
-python run_analysis.py "AI coding tools"
-python run_parallel_analysis.py "AI coding tools"
+# Quick workflows
+./bin/analyze run "AI coding tools"    # Full analysis pipeline
+./bin/analyze load                     # Load trends to vector database
+./bin/analyze search                   # Search your trend collections
 ```
 
 ## 📊 What It Does
@@ -25,9 +26,11 @@ The system takes a natural language query and:
 1. **🤖 AI Query Generation** - Generates multiple optimized YouTube search queries using Claude AI
 2. **🔍 Multi-Query Search** - Searches YouTube using official API with multiple strategies
 3. **📝 Transcript Extraction** - Downloads video transcripts using youtube-transcript-api
-4. **💡 Insight Processing** - Extracts structured insights using DSPy and Claude AI
+4. **💡 Insight Processing** - Extracts structured insights using Claude AI
 5. **📈 Trend Analysis** - Scores trends from -1.0 (declining) to +1.0 (rising)
-6. **📋 Results Export** - Saves comprehensive results with full visibility
+6. **🎯 Manual Grading** - Review and curate trends for quality
+7. **🔍 Vector Search** - Semantic search and clustering of curated trends
+8. **📋 Results Export** - Saves comprehensive results with full visibility
 
 ## 🎯 Core Features
 

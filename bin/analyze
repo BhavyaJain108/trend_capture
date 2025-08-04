@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""
+YouTube Trends Analysis - Main Entry Point
+
+Quick access to common workflows.
+"""
+
+import sys
+import os
+import subprocess
+
+def show_help():
+    print("""
+🎯 YouTube Trends Analysis
+
+QUICK WORKFLOWS:
+  ./bin/analyze run "query"          # Full pipeline: search → analyze → save CSV
+  ./bin/analyze load                 # Load ALL trends to vector DB (recommended)
+  ./bin/analyze search               # Search trends interactively
+  ./bin/analyze test "query"         # Test on single video
+
+MANUAL GRADING (optional):
+  ./bin/analyze grade                # Grade trends manually: CSV → review → vector DB
+
+DEMOS & EXPLORATION:
+  ./bin/analyze demo grading         # Demo the grading system
+  ./bin/analyze demo clustering      # Demo semantic clustering
+  ./bin/analyze demo vector          # Demo vector database
+
+UTILITIES:
+  ./bin/analyze stats                # Show grading statistics
+  ./bin/analyze help                 # Show this help
+
+EXAMPLES:
+  ./bin/analyze run "AI productivity tools 2024"
+  ./bin/analyze load
+  ./bin/analyze search
+  ./bin/analyze test "machine learning tutorials"
+""")
+
+def main():
+    if len(sys.argv) < 2:
+        show_help()
+        return 1
+    
+    command = sys.argv[1].lower()
+    
+    try:
+        if command == "run":
+            if len(sys.argv) < 3:
+                print("❌ Please provide a search query")
+                print("Usage: ./bin/analyze run \"your search query\"")
+                return 1
+            query = sys.argv[2]
+            print(f"🚀 Running full analysis pipeline for: '{query}'")
+            # Set PYTHONPATH to include src directory and change to parent directory
+            env = os.environ.copy()
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            env['PYTHONPATH'] = os.path.join(parent_dir, 'src')
+            result = subprocess.run([sys.executable, "-m", "youtube_trends.parallel_pipeline", query], 
+                                  cwd=parent_dir, env=env)
+            return result.returncode
+        
+        elif command == "load":
+            print("⚡ Loading trends directly to vector database (no grading)")
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            result = subprocess.run([sys.executable, "tools/load_to_vector_db.py", "auto"], cwd=parent_dir)
+            return result.returncode
+        
+        elif command == "grade":
+            print("🎯 Starting manual grading workflow: CSV → Review → Vector DB")
+            print("💡 Note: Use './bin/analyze load' for direct loading without grading")
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            result = subprocess.run([sys.executable, "tools/grade_and_store.py", "auto"], cwd=parent_dir)
+            return result.returncode
+        
+        elif command == "search":
+            print("🔍 Starting interactive search")
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            result = subprocess.run([sys.executable, "tools/search_results.py"], cwd=parent_dir)
+            return result.returncode
+        
+        elif command == "test":
+            query = sys.argv[2] if len(sys.argv) > 2 else None
+            print("🎬 Testing with single video")
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            if query:
+                result = subprocess.run([sys.executable, "tools/test_single_video_grading.py", query], cwd=parent_dir)
+            else:
+                result = subprocess.run([sys.executable, "tools/test_single_video_grading.py"], cwd=parent_dir)
+            return result.returncode
+        
+        elif command == "demo":
+            if len(sys.argv) < 3:
+                print("Available demos: grading, clustering, vector")
+                return 1
+            
+            demo_type = sys.argv[2].lower()
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            if demo_type == "grading":
+                result = subprocess.run([sys.executable, "demos/demo_trend_grader.py"], cwd=parent_dir)
+            elif demo_type == "clustering":
+                result = subprocess.run([sys.executable, "demos/demo_semantic_explorer.py"], cwd=parent_dir)
+            elif demo_type == "vector":
+                result = subprocess.run([sys.executable, "tools/use_trends_vector_db.py"], cwd=parent_dir)
+            else:
+                print(f"❌ Unknown demo: {demo_type}")
+                print("Available demos: grading, clustering, vector")
+                return 1
+            return result.returncode
+        
+        elif command == "stats":
+            print("📊 Showing grading statistics")
+            parent_dir = os.path.dirname(os.path.dirname(__file__))
+            result = subprocess.run([sys.executable, "tools/trend_grader.py", "stats"], cwd=parent_dir)
+            return result.returncode
+        
+        elif command in ["help", "-h", "--help"]:
+            show_help()
+            return 0
+        
+        else:
+            print(f"❌ Unknown command: {command}")
+            show_help()
+            return 1
+    
+    except KeyboardInterrupt:
+        print("\n👋 Cancelled by user")
+        return 1
+    except Exception as e:
+        print(f"💥 Error: {e}")
+        return 1
+
+if __name__ == "__main__":
+    exit(main())

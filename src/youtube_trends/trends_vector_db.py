@@ -10,6 +10,8 @@ import pandas as pd
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import logging
+import json
+from datetime import datetime
 
 from .config import Config
 
@@ -387,3 +389,196 @@ class TrendsVectorDB:
         except Exception as e:
             logger.error(f"Failed to clear database: {e}")
             return False
+    
+    # =============================================================================
+    # MANUAL GRADING METHODS
+    # =============================================================================
+    
+    def add_manual_grade(self, trend_id: str, is_interesting: bool, notes: str = None) -> bool:
+        """
+        Add manual grade to a trend.
+        
+        Args:
+            trend_id: The ID of the trend to grade
+            is_interesting: True if trend is interesting, False if not
+            notes: Optional notes about the grading decision
+            
+        Returns:
+            bool: True if successful, False if trend not found or error
+        """
+        try:
+            # Get current trend data
+            result = self.collection.get(
+                ids=[trend_id],
+                include=["documents", "metadatas"]
+            )
+            
+            if not result["ids"]:
+                logger.warning(f"Trend {trend_id} not found for grading")
+                return False
+            
+            # Update metadata with manual grade
+            current_metadata = result["metadatas"][0]
+            current_metadata.update({
+                "manual_grade": is_interesting,
+                "manual_grade_timestamp": datetime.now().isoformat(),
+                "manual_grade_notes": notes or ""
+            })
+            
+            # Update the trend in ChromaDB
+            self.collection.upsert(
+                ids=[trend_id],
+                documents=[result["documents"][0]],
+                metadatas=[current_metadata]
+            )
+            
+            logger.info(f"Added manual grade to trend {trend_id}: {'interesting' if is_interesting else 'not interesting'}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to add manual grade to trend {trend_id}: {e}")
+            return False
+    
+    def get_ungraded_trends(self, limit: int = 50, category: str = None) -> List[Dict[str, Any]]:
+        """
+        Get trends that haven't been manually graded yet.
+        
+        Args:
+            limit: Maximum number of trends to return
+            category: Optional category filter
+            
+        Returns:
+            List of ungraded trends
+        """
+        try:
+            # Get all trends
+            all_results = self.collection.get(
+                include=["documents", "metadatas"],
+                limit=limit * 10  # Get more to filter
+            )
+            
+            if not all_results["ids"]:
+                return []
+            
+            # Filter ungraded trends
+            ungraded = []
+            for i in range(len(all_results["ids"])):
+                metadata = all_results["metadatas"][i]
+                
+                # Skip if already graded
+                if "manual_grade" in metadata:
+                    continue
+                
+                # Apply category filter
+                if category and metadata.get("category") != category:
+                    continue
+                
+                trend = {
+                    "id": all_results["ids"][i],
+                    "text": all_results["documents"][i],
+                    "metadata": metadata
+                }
+                ungraded.append(trend)
+                
+                # Stop when we have enough
+                if len(ungraded) >= limit:
+                    break
+            
+            return ungraded
+            
+        except Exception as e:
+            logger.error(f"Failed to get ungraded trends: {e}")
+            return []
+    
+    def get_graded_trends(self, interesting_only: bool = None, limit: int = 100) -> List[Dict[str, Any]]:
+        """
+        Get trends that have been manually graded.
+        
+        Args:
+            interesting_only: If True, only return interesting trends. If False, only not interesting. If None, return all graded.
+            limit: Maximum number of trends to return
+            
+        Returns:
+            List of graded trends
+        """
+        try:
+            # Get all trends
+            all_results = self.collection.get(
+                include=["documents", "metadatas"],
+                limit=limit * 10  # Get more to filter
+            )
+            
+            if not all_results["ids"]:
+                return []
+            
+            # Filter graded trends
+            graded = []
+            for i in range(len(all_results["ids"])):
+                metadata = all_results["metadatas"][i]
+                
+                # Skip if not graded
+                if "manual_grade" not in metadata:
+                    continue
+                
+                # Apply interesting filter
+                if interesting_only is not None:
+                    if metadata["manual_grade"] != interesting_only:
+                        continue
+                
+                trend = {
+                    "id": all_results["ids"][i],
+                    "text": all_results["documents"][i],
+                    "metadata": metadata
+                }
+                graded.append(trend)
+                
+                # Stop when we have enough
+                if len(graded) >= limit:
+                    break
+            
+            return graded
+            
+        except Exception as e:
+            logger.error(f"Failed to get graded trends: {e}")
+            return []
+    
+    def get_grading_stats(self) -> Dict[str, Any]:
+        """Get statistics about manual grading progress."""
+        try:
+            # Get all trends
+            all_results = self.collection.get(
+                include=["metadatas"]
+            )
+            
+            if not all_results["ids"]:
+                return {"total_trends": 0, "graded": 0, "ungraded": 0}
+            
+            total_trends = len(all_results["ids"])
+            graded_count = 0
+            interesting_count = 0
+            not_interesting_count = 0
+            
+            for metadata in all_results["metadatas"]:
+                if "manual_grade" in metadata:
+                    graded_count += 1
+                    if metadata["manual_grade"]:
+                        interesting_count += 1
+                    else:
+                        not_interesting_count += 1
+            
+            ungraded_count = total_trends - graded_count
+            graded_percentage = (graded_count / total_trends * 100) if total_trends > 0 else 0
+            
+            return {
+                "total_trends": total_trends,
+                "graded": graded_count,
+                "ungraded": ungraded_count,
+                "graded_percentage": graded_percentage,
+                "interesting": interesting_count,
+                "not_interesting": not_interesting_count,
+                "interesting_percentage": (interesting_count / graded_count * 100) if graded_count > 0 else 0
+            }
+            
+        except Exception as e:
+            logger.error(f"Failed to get grading stats: {e}")
+            return {"error": str(e)}
