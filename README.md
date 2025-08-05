@@ -19,6 +19,8 @@ echo "CLAUDE_API_KEY=your_claude_api_key" >> .env
 ./bin/analyze search                   # Search your trend collections
 ```
 
+> 📋 **For complete command reference:** See [COMMAND_REFERENCE.md](COMMAND_REFERENCE.md) for every available command and option.
+
 ## 📊 What It Does
 
 The system takes a natural language query and:
@@ -59,22 +61,25 @@ results/YYYYMMDD_HHMMSS/
 
 ## ⚡ Processing Options
 
-### Regular Processing
+### Unified CLI (Recommended)
 ```bash
-python run_analysis.py "your query here"
+./bin/analyze run "your query here"
 ```
-- Sequential video processing
-- Reliable and stable
-- Best for smaller video sets
+- Single entry point for all functionality
+- Handles path resolution automatically
+- Consistent interface across all features
 
-### Parallel Processing (Faster)
+### Direct Script Access
 ```bash
-python run_parallel_analysis.py "your query here"
+# Parallel processing (fastest)
+python scripts/run_parallel_analysis.py "your query here"
+
+# Append to existing analysis
+python tools/append_analysis.py "related query"
+
+# Load results to vector database
+python tools/load_to_vector_db.py auto
 ```
-- **Parallel transcript extraction** for faster network I/O
-- **Sequential insight processing** (DSPy thread safety limitation)
-- Significant speedup for large video sets
-- Same output quality as regular processing
 
 ## 🔧 Configuration
 
@@ -115,31 +120,51 @@ date,category,information,score
 ## 🏗️ Architecture
 
 ### Core Components
-- **`pipeline.py`** - Main sequential processing pipeline
-- **`parallel_pipeline.py`** - Parallel processing version
+- **`bin/analyze`** - Main CLI entry point
+- **`parallel_pipeline.py`** - Main parallel processing pipeline
 - **`youtube_query_generation.py`** - AI-powered query optimization
 - **`youtube_search.py`** - Official YouTube Data API v3 integration
-- **`transcript.py`** - Video transcript extraction
-- **`transcript_processing.py`** - DSPy-powered insight extraction
+- **`transcript_client.py`** - Video transcript extraction
+- **`transcript_processing_claude.py`** - Claude-powered insight extraction
+- **`trends_vector_db.py`** - Vector database with semantic search
+- **`semantic_explorer.py`** - Density-based clustering for trend regions
 - **`config.py`** - Centralized configuration management
 
 ### Data Flow
 ```
 User Query → AI Query Generation → Multi-Query Search → 
-Transcript Extraction → Insight Processing → Results Export
+Transcript Extraction → Claude Analysis → Vector Database → Semantic Search
+```
+
+### Directory Structure
+```
+bin/         # Main entry points
+tools/       # User tools (load, search, grade, append)
+scripts/     # Analysis runners
+src/         # Core library
+demos/       # Feature demonstrations
+results/     # Analysis outputs with vector databases
 ```
 
 ## 🔍 Technical Details
 
 ### APIs Used
-- **YouTube Data API v3** - Official video search (more restrictive than web search)
-- **Claude AI (Anthropic)** - Query generation and insight extraction
+- **YouTube Data API v3** - Official video search
+- **Claude AI (Anthropic)** - Query generation and direct insight extraction
 - **youtube-transcript-api** - Transcript extraction
+- **ChromaDB** - Vector database with built-in embeddings
 
 ### AI Processing
-- **DSPy Framework** - Structured LLM outputs without regex parsing
+- **Direct Claude API** - Structured JSON outputs with retry logic
 - **Claude 3.5 Sonnet** - Latest model for optimal performance
-- **Modular signatures** - Separate processing for each insight category
+- **Smart chunking** - Transcript segmentation with context preservation
+- **Parallel processing** - Concurrent video analysis with thread safety
+
+### Vector Database
+- **ChromaDB** - Local vector storage with 384-dim embeddings
+- **Semantic search** - Natural language queries over trend collections
+- **Metadata filtering** - Category, score, and date-based filtering
+- **Clustering analysis** - DBSCAN/OPTICS for dense region discovery
 
 ### Search Strategy
 - **Multiple query approach** - Diversifies results beyond single search
@@ -192,12 +217,32 @@ DEFAULT_MAX_VIDEOS = 20
 TRANSCRIPT_MAX_CHUNK_SIZE = 6000
 ```
 
+## 🎯 Key Features
+
+### **Vector Database System**
+- **Per-analysis databases** - Each topic gets its own vector DB
+- **Semantic search** - Find trends by meaning, not just keywords
+- **Advanced filtering** - Category, score, date, and similarity filters
+- **Clustering analysis** - Discover dense semantic regions automatically
+
+### **Flexible Workflows**
+- **Append functionality** - Expand existing analyses with related content
+- **Manual grading** - Optional quality control with y/n decisions
+- **Multiple entry points** - CLI, direct scripts, or programmatic access
+- **Result management** - Rename, organize, and track analysis folders
+
+### **Advanced Analysis**
+- **5 insight categories** - Products, topics, problems, behaviors, education
+- **Trend scoring** - -1.0 (declining) to +1.0 (rising) with reasoning  
+- **Smart chunking** - Process long transcripts efficiently
+- **Parallel processing** - Fast concurrent video analysis
+
 ## 📋 Requirements
 
 - Python 3.8+
 - YouTube Data API v3 key
 - Claude API key (Anthropic)
-- Dependencies: `anthropic`, `google-api-python-client`, `youtube-transcript-api`, `dspy-ai`, `pandas`
+- Dependencies: `anthropic`, `google-api-python-client`, `youtube-transcript-api`, `chromadb`, `pandas`, `scikit-learn`
 
 ## 🎯 Use Cases
 
@@ -244,4 +289,4 @@ The system successfully identifies:
 
 ---
 
-*Built with Claude AI, DSPy, and the YouTube Data API for comprehensive trend analysis.*
+*Built with Claude AI, and the YouTube Data API for comprehensive trend analysis.*
